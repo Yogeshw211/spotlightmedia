@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="The Spotlight Media is a Dubai communications studio for PR, digital marketing, branding, website development and editorial services.">
 <title>The Spotlight Media</title>
+<link rel="icon" type="image/png" href="media/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap">
@@ -74,7 +75,8 @@ header.nav{position:sticky;top:0;z-index:20;background:rgba(17,20,27,.84);backdr
   .nav ul,.nav .btn{display:none}
   .menu-btn{display:block}
   .nav.open ul{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:68px;background:var(--stage-2);border-bottom:1px solid var(--line);padding:8px var(--gutter) 20px}
-  .nav.open ul a{display:block;padding:14px 0;font-size:20px;color:var(--fg);border-bottom:1px solid var(--line)}
+  .nav.open ul a{display:block;padding:14px 0;font-size:20px;color:var(--muted);border-bottom:1px solid var(--line)}
+  .nav.open ul a.on{color:var(--fg)}
   .nav.open ul{align-items:stretch;max-height:calc(100vh - 68px);overflow:auto}
   .nav.open .has-sub>a::after{display:none}
   .nav.open .sub{position:static;opacity:1;visibility:visible;transform:none;margin:0;padding:0 0 0 16px;background:none;border:0;box-shadow:none;min-width:0}
@@ -474,7 +476,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
   <div class="wrap">
     <a class="brand" href="#top" aria-label="The Spotlight Media, home"><svg viewBox="0 0 116 88" aria-hidden="true"><defs><radialGradient id="G1" cx="40" cy="44" r="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F2C46D" stop-opacity=".55"/><stop offset=".55" stop-color="#F2C46D" stop-opacity=".14"/><stop offset="1" stop-color="#F2C46D" stop-opacity="0"/></radialGradient><linearGradient id="B1" x1="40" x2="116" y1="0" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F2C46D" stop-opacity=".9"/><stop offset="1" stop-color="#F2C46D" stop-opacity="0"/></linearGradient></defs><circle cx="40" cy="44" r="40" fill="url(#G1)"/><path d="M48 33 L116 6 L116 82 L48 55 Z" fill="url(#B1)"/><circle cx="40" cy="44" r="15" fill="#11141B" stroke="#F2C46D" stroke-width="2"/><circle cx="40" cy="44" r="6.5" fill="#F2C46D"/></svg><span class="wm"><b>The Spotlight</b><i>MEDIA</i></span></a>
     <ul id="menu">
-      <li><a href="#top">Home</a></li>
+      <li><a href="#top" class="on" aria-current="location">Home</a></li>
       <li class="has-sub"><a href="#services">Our Services</a>
         <ul class="sub" aria-label="Our services">
           <li><a href="#pr">Public Relations <small>PR</small></a></li>
@@ -916,30 +918,33 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
           <button type="button" id="copyMail">Copy email</button>
         </div>
       </div>
-      <form id="brief" novalidate>
+      <form id="brief" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="fc909708-40b4-4f4c-8212-cca7e48437d7">
+        <input type="hidden" name="subject" value="New Website Enquiry">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
         <div class="field">
           <label>What do you need?</label>
           <div class="pick">
-            <input type="checkbox" id="s-pr" value="Public Relations"><label for="s-pr">PR</label>
-            <input type="checkbox" id="s-dm" value="Digital Marketing"><label for="s-dm">Digital Marketing</label>
-            <input type="checkbox" id="s-br" value="Branding"><label for="s-br">Branding</label>
-            <input type="checkbox" id="s-wd" value="Website Development"><label for="s-wd">Website Development</label>
-            <input type="checkbox" id="s-ed" value="Editorial"><label for="s-ed">Editorial</label>
+            <input type="checkbox" id="s-pr" name="services[]" value="Public Relations"><label for="s-pr">PR</label>
+            <input type="checkbox" id="s-dm" name="services[]" value="Digital Marketing"><label for="s-dm">Digital Marketing</label>
+            <input type="checkbox" id="s-br" name="services[]" value="Branding"><label for="s-br">Branding</label>
+            <input type="checkbox" id="s-wd" name="services[]" value="Website Development"><label for="s-wd">Website Development</label>
+            <input type="checkbox" id="s-ed" name="services[]" value="Editorial"><label for="s-ed">Editorial</label>
           </div>
         </div>
         <div class="two">
-          <div class="field"><label for="f-name">Name</label><input id="f-name" required autocomplete="name"></div>
-          <div class="field"><label for="f-co">Company</label><input id="f-co" autocomplete="organization"></div>
+          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="f-co">Company</label><input id="f-co" name="company" autocomplete="organization"></div>
         </div>
         <div class="two">
-          <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
           <div class="field"><label for="f-when">Timeline</label>
-            <select id="f-when"><option>Within a month</option><option>1–3 months</option><option>3+ months</option><option>Just exploring</option></select>
+            <select id="f-when" name="timeline"><option>Within a month</option><option>1–3 months</option><option>3+ months</option><option>Just exploring</option></select>
           </div>
         </div>
-        <div class="field"><label for="f-msg">Tell us about it</label><textarea id="f-msg" placeholder="We're opening a new restaurant in Jumeirah in November and want press coverage and a social launch."></textarea></div>
-        <button class="btn lit" type="submit" style="justify-self:start">Prepare my brief →</button>
-        <div class="out" id="out" hidden></div>
+        <div class="field"><label for="f-msg">Tell us about it</label><textarea id="f-msg" name="message" placeholder="We're opening a new restaurant in Jumeirah in November and want press coverage and a social launch."></textarea></div>
+        <button class="btn lit" type="submit" style="justify-self:start">Step Into the Spotlight</button>
+        <div class="out" id="out" role="status" aria-live="polite" hidden></div>
       </form>
     </div>
   </section>
@@ -1106,6 +1111,24 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
   var nav=document.getElementById('nav'),mb=document.getElementById('menuBtn');
   mb.addEventListener('click',function(){var o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.textContent=o?'Close':'Menu';});
   document.querySelectorAll('#menu a').forEach(function(a){a.addEventListener('click',function(){a.blur();nav.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.textContent='Menu';});});
+  // Keep the primary navigation state in sync with the section under the sticky header.
+  var navLinks=Array.prototype.slice.call(document.querySelectorAll('#menu > li > a'));
+  var navSections=navLinks.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+  var navTick=false;
+  function updateActiveNav(){
+    var edge=(nav.getBoundingClientRect().bottom||68)+24,active=navSections[0];
+    navSections.forEach(function(section){if(section.getBoundingClientRect().top<=edge)active=section;});
+    navLinks.forEach(function(a){
+      var isActive=a.getAttribute('href').slice(1)===active.id;
+      a.classList.toggle('on',isActive);
+      if(isActive)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');
+    });
+    navTick=false;
+  }
+  function scheduleActiveNav(){if(!navTick){navTick=true;window.requestAnimationFrame(updateActiveNav);}}
+  window.addEventListener('scroll',scheduleActiveNav,{passive:true});
+  window.addEventListener('resize',scheduleActiveNav);
+  updateActiveNav();
   // Process line fill
   var steps=document.getElementById('steps');
   if('IntersectionObserver' in window){
@@ -1125,17 +1148,23 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
     e.preventDefault();
     var name=document.getElementById('f-name').value.trim(),em=document.getElementById('f-email').value.trim();
     if(!name||!/^\S+@\S+\.\S+$/.test(em)){
-      out.hidden=false;out.innerHTML='<b>Add your name and a valid email</b> so we know who to reply to.';return;
+      out.textContent='Add your name and a valid email so we know who to reply to.';
+      out.hidden=false;return;
     }
-    var svc=[].slice.call(f.querySelectorAll('.pick input:checked')).map(function(i){return i.value;});
-    var txt='New project brief\n\nName: '+name+'\nCompany: '+(document.getElementById('f-co').value||'-')+'\nEmail: '+em+'\nServices: '+(svc.join(', ')||'Not sure yet')+'\nTimeline: '+document.getElementById('f-when').value+'\n\n'+(document.getElementById('f-msg').value||'');
-    out.hidden=false;
-    out.innerHTML='<b>Your brief is ready.</b> Copy it and email it to thespotlightmedia.uae@gmail.com. <button type="button" class="btn" id="cb" style="margin-top:10px;padding:10px 16px">Copy brief</button><pre id="bt"></pre>';
-    document.getElementById('bt').textContent=txt;
-    var cb=document.getElementById('cb');
-    cb.addEventListener('click',function(){
-      try{navigator.clipboard.writeText(txt).then(function(){cb.textContent='Copied';},function(){cb.textContent='Select the text below to copy';});}catch(err){cb.textContent='Select the text below to copy';}
-    });
+    var submit=f.querySelector('[type="submit"]'),label=submit.textContent;
+    submit.disabled=true;submit.textContent='Sending…';
+    out.hidden=true;
+    fetch(f.action,{method:'POST',body:new FormData(f)})
+      .then(function(response){return response.json().then(function(data){if(!response.ok||!data.success)throw new Error(data.message||'The enquiry could not be sent. Please try again.');return data;});})
+      .then(function(){
+        out.textContent='Thank you — your enquiry has been sent. We’ll be in touch within one working day.';
+        out.hidden=false;f.reset();
+      })
+      .catch(function(error){
+        out.textContent=(error.message||'We couldn’t send your enquiry.')+' Please try again or email thespotlightmedia.uae@gmail.com.';
+        out.hidden=false;
+      })
+      .then(function(){submit.disabled=false;submit.textContent=label;});
   });
 })();
 </script>
